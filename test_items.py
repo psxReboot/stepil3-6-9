@@ -5,4 +5,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 def test_page_have_add_button(browser):
         #browser.find_element(By.CSS_SELECTOR, ".btn-add-to-basket")
-        button = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".btn-add-to-basket")))
+        try:
+                button=None
+                button = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".btn-add-to-basket")))
+        except:pass
+        finally:
+                assert button, "No add button on the page"
+
